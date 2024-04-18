@@ -6,7 +6,7 @@
 /*   By: ggeorgie <ggeorgie@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 22:23:54 by ggeorgie          #+#    #+#             */
-/*   Updated: 2024/04/18 17:39:11 by ggeorgie         ###   ########.fr       */
+/*   Updated: 2024/04/18 17:50:59 by ggeorgie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ struct s_stack	*fill_stack(int num_count, int **array, struct s_stack *stack_a)
 //		return (write(2, "Error\n", 6), (struct s_stack *)EXIT_FAILURE);
 		return (NULL);															// Is this the correct way to handle this error, or we should go freeing all allocated memory?
 	}
+	return (stack_a);
 }
 
 /**
