@@ -6,7 +6,7 @@
 /*   By: ggeorgie <ggeorgie@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 20:04:03 by ggeorgie          #+#    #+#             */
-/*   Updated: 2024/04/18 15:29:52 by ggeorgie         ###   ########.fr       */
+/*   Updated: 2024/04/18 18:11:52 by ggeorgie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,13 +160,13 @@ int	**index_array(int *num_count, int **array)
 }
 
 /**
- * 2D array initialization.
- * @param	int	cols : the number of columns in the array 
- * 			= num_count: the number of elements in the stack.
- * @param	int	rows : the number of rows in the array = 2:
- *			- 0-th - the original values of the elements in the stack,
- *			- 1-st - the index of the elements in the stack after sorting.
- * @return	int	**array : A double pointer to the array.
+ * Takes the user input, parses it, and fills the array with the values.
+ * @param	int		*num_count: number of arguments passed by the user.
+ * @param	char	*argv[] : pointer to each argument passed by the user.
+ * @param	int		**array : 2D array of integers and their indexes.
+ * @param	char	**input_str : double pointer to parsed input,
+ * 					which was provided in quotation marks.
+ * @return	int	**array : double pointer to the array.
  */
 int	**make_index_array(int *num_count, char **argv)
 {

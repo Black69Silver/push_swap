@@ -6,7 +6,7 @@
 /*   By: ggeorgie <ggeorgie@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 16:08:16 by ggeorgie          #+#    #+#             */
-/*   Updated: 2024/04/18 16:09:50 by ggeorgie         ###   ########.fr       */
+/*   Updated: 2024/04/18 18:01:37 by ggeorgie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,19 +254,6 @@ int	main(int argc, char **argv)
 			return (write(2, "Error\n", 6), EXIT_FAILURE);
 		}
 		stack_a = fill_stack(num_count, array, stack_a);
-// 		i = 0;
-// 		while (i < num_count - 1)
-// 		{
-// //			printf("array[1][%d] = %d\n", i, array[1][i]);
-// 			insert_element(array[1][i], stack_a);
-// 			i++;
-// 		}
-// 		if (!stack_a)
-// 		{
-// //			free_stack(stack_a);												// This doesn't seem to make any difference.
-// 			printf("parse_input argv\n");
-// 			return (write(2, "Error\n", 6), EXIT_FAILURE);
-// 		}
 		// printf("(*stack_a).size = %d\n", (*stack_a).size);
 		while (not_sorted(stack_a))
 //		if (not_sorted(stack_a))
