@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_split_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggeorgie <ggeorgie@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 01:21:22 by ggeorgie          #+#    #+#             */
-/*   Updated: 2024/04/29 02:58:37 by ggeorgie         ###   ########.fr       */
+/*   Updated: 2024/04/27 01:36:13 by ggeorgie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /**
- * Counts the number of characters in 'str' string.
- * @return	The 'i': number of characters in 'str'.
+ * @brief	Counts the number of characters in 'str' string.
+ * @return	The number of characters in 'str'.
  */
-int	ft_strlen(const char *str)
+int	ft_strlen(const char *str)												// To be moved to another file, because there are too many functions on this one.
 {
 	int	i;
 
@@ -28,10 +28,11 @@ int	ft_strlen(const char *str)
 	return (i);
 }
 
-char	*ft_substr_end(char *substr, int len_substr, char const *s,
+
+char	*ft_substr_end(char *substr, size_t len_substr, char const *s,
 	unsigned int start)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	if (substr != NULL)
@@ -46,15 +47,6 @@ char	*ft_substr_end(char *substr, int len_substr, char const *s,
 	return (substr);
 }
 
-/** 
- * Copy in 'substr' string 'len' characters from 's' string starting at 'start'. 
- * @param	char	*s: string to be copied from.
- * @param	int		start: position to start copying from.
- * @param	int		len: maximum length of the slot.
- * @param	int		len_str: length of 's' string.
- * @param	int		len_substr: length of 'substr' string.
- * @return	char	*substr: newly created string, or NULL if allocation fails.
-*/
 char	*ft_substr(char const *s, int start, int len)
 {
 	int		len_str;
@@ -77,37 +69,4 @@ char	*ft_substr(char const *s, int start, int len)
 		len_substr = len_str - start;
 	substr = malloc(sizeof(char) * (len_substr + 1));
 	return (ft_substr_end(substr, len_substr, s, start));
-}
-
-/**
- * Sorts the array of integers in ascending order using bubble sort algorithm.
- * @param	int		*array_copy: array of integers to be sorted.
- * @param	int		*num_count: number of elements in 'array_copy'.
- * @param	int		i & j: counters.
- * @param	int		temp: temporary variable for swapping.
- * @return	Sorted array.
- */
-int	*bubble_sort(int *array_copy, int *num_count)
-{
-	int	i;
-	int	j;
-	int	temp;
-
-	j = 0;
-	while (j < *num_count - 1)
-	{
-		i = 0;
-		while (i < *num_count - j - 2)
-		{
-			if (array_copy[i] > array_copy[i + 1])
-			{
-				temp = array_copy[i];
-				array_copy[i] = array_copy[i + 1];
-				array_copy[i + 1] = temp;
-			}
-			i++;
-		}
-		j++;
-	}
-	return (array_copy);
 }

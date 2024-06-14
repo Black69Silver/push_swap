@@ -6,20 +6,13 @@
 /*   By: ggeorgie <ggeorgie@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 16:25:04 by ggeorgie          #+#    #+#             */
-/*   Updated: 2024/04/29 02:36:20 by ggeorgie         ###   ########.fr       */
+/*   Updated: 2024/04/28 16:25:07 by ggeorgie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/**
- * Counts the number of words/sub-strings in a string.
- * @param	char	*s: string to be evaluated.
- * @param	char	c: delimiter character.
- * @param	int		in_word: flag for current position being in a word.
- * @return	int		count: The number of words/sub-strings.
- */
-int	word_counter(char const *str, char c)
+int	word_count(char const *str, char c)
 {
 	int	count;
 	int	in_word;
@@ -29,7 +22,9 @@ int	word_counter(char const *str, char c)
 	while (*str)
 	{
 		if (*str == c)
+		{
 			in_word = 0;
+		}
 		else if (!in_word)
 		{
 			in_word = 1;
@@ -40,61 +35,40 @@ int	word_counter(char const *str, char c)
 	return (count);
 }
 
-/**
- * Finds the start of the word/sub-string.
- * @param	char	*s: string to be evaluated.
- * @param	char	c: delimiter character.
- * @param	int		i: index for the beginning of the search.
- * @return	The index for the beginning of the word/sub-string.
- */
-int	find_start(const char *s, char c, int i)
+static int	find_start(const char *s, char c, int i)
 {
 	while (s[i] == c && s[i] != '\0')
 		i++;
 	return (i);
 }
 
-/**
- * Finds the end of the word/sub-string.
- * @param	char	*s: string to be evaluated.
- * @param	char	c: delimiter character.
- * @param	int		i: index for the start of the word/sub-string.
- * @return	The index for the end of the word/sub-string.
- */
-int	find_end(const char *s, char c, int i)
+static int	find_end(const char *s, char c, int i)
 {
 	while (s[i] != c && s[i] != '\0')
 		i++;
 	return (i);
 }
 
-/**
- * Frees the memory allocated for '**pointers'. The triple pointer is
- * needed for modification of the original pointer in 'ft_split' function.
- * @param	char ***pointers: string of pointers.
- * @param	int	arr[3]: index for the word/sub-string/pointers.
- * @return	Freed memory.
- */
-void	free_memory(char ***pointers, int arr[])
+static void	free_memory(char ***arr, int index)
 {
-	while (arr[3] > 0)
+	while (index > 0)
 	{
-		arr[3]--;
-		free((*pointers)[arr[3]]);
+		index--;
+		free((*arr)[index]);
 	}
-	free(*pointers);
-	*pointers = NULL;
+	free(*arr);
+	*arr = NULL;
 }
 
 /**
  * Splits string ’s’ into an array of sub-strings using ’c’ delimiter.
- * @param	char	*s: string to be split.
- * @param	char	c: delimiter character.
- * @param	int		arr: array for 4 counters.
- * @param	int		arr[0]: position within 's' string.
- * @param	int		arr[1]: index for the start of the word.
- * @param	int		arr[2]: index for the end of the word.
- * @param	int		arr[3]: index for the word/sub-string/pointers.
+ * @param	char	*s : string to be split.
+ * @param	char	c : delimiter character.
+ * @param	int		arr : array for 4 counters.
+ * @param	int		arr[0] : position within 's' string.
+ * @param	int		arr[1] : index for the start of the word.
+ * @param	int		arr[2] : index for the end of the word.
+ * @param	int		arr[3] : index for the word/sub-string/pointers.
  * @return	A string of pointers to the new strings resulting from the split.
  */
 char	**ft_split(char const *s, char c)
@@ -103,7 +77,7 @@ char	**ft_split(char const *s, char c)
 	int		arr[4];
 
 	arr[0] = 0;
-	pointers = malloc(sizeof(char *) * (word_counter(s, c) + 2));
+	pointers = malloc(sizeof(char *) * (word_count(s, c) + 2));				// + 1 for file name substitute, + 1 for NULL-terminator
 	if (!pointers || !s)
 		return (NULL);
 	pointers[0] = ft_substr(" ", 0, 1);
@@ -116,7 +90,7 @@ char	**ft_split(char const *s, char c)
 		{
 			pointers[arr[3]] = ft_substr(s, arr[1], arr[2] - arr[1]);
 			if (pointers[arr[3]] == NULL)
-				return (free_memory(&pointers, arr), NULL);
+				return (free_memory(&pointers, arr[3]), NULL);
 			arr[3]++;
 		}
 		arr[0] = arr[2];
