@@ -38,10 +38,12 @@ Sorting a set of integers in a stack using an auxiliary stack, the fewest possib
 ### Solution
 1. Create an `(argc - 1) * 2` array of integers.  
 2. Fill the first row of the array with values contained in `argv`.  
-3. Check for duplicates and invalid arguments (< INT_MIN, > INT_MAX, non-digits).  
+3. Check for duplicates and invalid arguments (`< INT_MIN`, `> INT_MAX`, non-digits).  
 4. Using buble sort, index the first row.  
-5. Fill the second row of the array with the indexes of the first row.  
-6. Make a singly linked circular list with sentinel node from the second row of the array.  
+  <https://en.wikipedia.org/wiki/Bubble_sort>  
+5. Fill the second row of the array with the indexes of the first row numbers.  
+6. Make a circular singly linked list with sentinel node from the second row of the array.  
+  <https://en.wikipedia.org/wiki/Linked_list>  
 7. For stacks with more than 5 elements, use binary radix sort algorithm.  
   <https://en.wikipedia.org/wiki/Radix_sort>
 	* Starting from the least significant digit, push the `0`s to the auxiliary stack and rotate the `1`s to the end of the original stack.  
