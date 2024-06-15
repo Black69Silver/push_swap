@@ -27,7 +27,7 @@ Sorting a set of integers in a stack using an auxiliary stack, the fewest possib
 `$>./push_swap 2 1 3 5 4`  
 `stack_a			|	stack_a			|	stack_a			stack_b			||	stack_a		`  
 `original input	|	sa				|	pb, pb							||	end result	`  
-`-----------------|---------------------|---------------------------------------||---------------`  
+`----------------	|	-----------------	|	----------------------------------	||	-------------`  
 `sentinel node	|	sentinel node	|	sentinel node	sentinel node	||	sentinel node`  
 `2				|	1				|	3				2				||	1			`  
 `1				|	2				|	5				1				||	2			`  
@@ -44,9 +44,13 @@ Sorting a set of integers in a stack using an auxiliary stack, the fewest possib
 6. Make a singly linked circular list with sentinel node from the second row of the array.  
 7. For stacks with more than 5 elements, use binary radix sort algorithm.  
   <https://en.wikipedia.org/wiki/Radix_sort>
-8. 
+	* Starting from the least significant digit, push the `0`s to the auxiliary stack and rotate the `1`s to the end of the original stack.  
+ 	* Push the `0`s back to the original stack.  
+  	* Go to the next more significant digit and repeat the previous two steps.  
+8. For small stacks there is an optimized algorithm.  
 
 ### User interaction  
 * Clone the repository  
 * Run in command line: `make`  
-* Run in command line: `./push_swap 1 2 3 4 -00 5 -69  +9    -9 -1234567890 | ./checker_original 1 2 3 4 -00 5 -69  +9    -9 -1234567890` or alike to check the correctness of algorithm.
+* Run in command line: `./push_swap 1 2 3 4 -00 5 -69  +9    -9 -1234567890 | ./checker_original 1 2 3 4 -00 5 -69  +9    -9 -1234567890` or alike to check the correctness of the algorithm.
+* For entertainment purposes, you may want to use <https://github.com/o-reo/push_swap_visualizer>.
