@@ -23,7 +23,7 @@ Sorting a set of integers in a stack using an auxiliary stack, the fewest possib
 							All elements of stack 'b' shift down by 1.
 * `rrr`						:	'rra' and 'rrb' at the same time.
 
-### Example:
+### Example  
 `$>./push_swap 2 1 3 5 4`  
 `stack_a			|	stack_a			|	stack_a			stack_b			||	stack_a		`  
 `original input	|	sa				|	pb, pb							||	end result	`  
